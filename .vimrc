@@ -16,19 +16,25 @@ set number
 set relativenumber
 set nosmd
 set ignorecase
+set cursorline
+set incsearch
+set hlsearch
+set showmatch
+set scrolloff=5
+
 
 call vundle#begin()
 filetype plugin indent on
 
 Plugin 'VundleVim/Vundle.vim'
 ""add plugins here
-"Plugin 'Valloric/YouCompleteMe'
+""Plugin 'Valloric/YouCompleteMe'
 "Plugin 'Shougo/vimfiler.vim'
-"Plugin 'hail2u/vim-css3-syntax'
-"Plugin 'tclem/vim-arduino'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+""Plugin 'hail2u/vim-css3-syntax'
 Plugin 'flazz/vim-colorschemes'
+"Plugin 'tclem/vim-arduino'
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 Plugin 'francoiscabrol/ranger.vim'
@@ -57,7 +63,6 @@ nnoremap K :tabn<Enter>
 nnoremap j gj
 nnoremap k gk
 inoremap jk <esc>
-
 ""Java
 autocmd Filetype java set makeprg=javac\ %
 autocmd Filetype java set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
