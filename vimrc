@@ -1,14 +1,18 @@
 set nocompatible
+set background=dark
 "colorscheme badwolf
 filetype off 
 set encoding=utf-8 
 set rtp+=~/.vim/bundle/Vundle.vim
+" fzf
+set rtp+=~/.fzf
+
 syntax on
 
-setlocal noexpandtab shiftround autoindent
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal softtabstop=4
+set expandtab shiftround autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set autoindent
 set breakindent
 set breakindentopt=shift:2
@@ -28,16 +32,20 @@ filetype plugin indent on
 
 Plugin 'VundleVim/Vundle.vim'
 ""add plugins here
+Plugin 'scrooloose/nerdtree'
+"Plugin 'storyn26383/vim-vue'
+Plugin 'leafOfTree/vim-vue-plugin'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'Shougo/vimfiler.vim'
 "Plugin 'hail2u/vim-css3-syntax'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'tclem/vim-arduino'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
+"Plugin 'tclem/vim-arduino'
+"Plugin 'xolox/vim-notes'
+"Plugin 'xolox/vim-misc'
 Plugin 'francoiscabrol/ranger.vim'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -80,10 +88,11 @@ nnoremap j gj
 nnoremap k gk
 inoremap jk <esc>
 
-""Java
-autocmd Filetype java set makeprg=javac\ %
-autocmd Filetype java set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-autocmd Filetype java map <F5> :make<Return>:copen<Return>
-autocmd Filetype java map <F6> :!java %:t:r<Return>
-autocmd FileType java :command R w | !javac % | !java %
+" fzf
+nnoremap <C-p> :FZF -i<Enter>
+let g:fzf_action = {'enter': 'tab split' }
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <C-S-f> :Ag<Enter>
 
+"Nerdtree
+let NERDTreeShowHidden=1
