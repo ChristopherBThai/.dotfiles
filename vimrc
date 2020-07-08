@@ -9,10 +9,9 @@ set rtp+=~/.fzf
 
 syntax on
 
-set expandtab shiftround autoindent
+set shiftround autoindent
 set tabstop=2
 set shiftwidth=2
-set softtabstop=2
 set autoindent
 set breakindent
 set breakindentopt=shift:2
