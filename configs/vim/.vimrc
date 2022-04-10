@@ -72,11 +72,11 @@ set signcolumn=yes
 set updatetime=250
 syntax on
 
-nnoremap J :tabp<Enter>
-nnoremap K :tabn<Enter>
-nnoremap j gj
-nnoremap k gk
-inoremap jk <esc>
+nnoremap <silent> J :tabp<Enter>
+nnoremap <silent> K :tabn<Enter>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+inoremap <silent> jk <esc>
 
 " ----- Lightline -----
 " -- INSERT -- no longer needed
