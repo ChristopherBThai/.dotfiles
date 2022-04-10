@@ -12,10 +12,10 @@ syntax on
 set shiftround
 set tabstop=2
 set shiftwidth=2
+set breakindentopt=shift:2
 set expandtab
 set autoindent
 set breakindent
-set breakindentopt=shift:2
 set number
 set relativenumber
 set nosmd
