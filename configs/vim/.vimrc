@@ -27,8 +27,8 @@ Plug 'editorconfig/editorconfig-vim'
 " Syntax Checking and Highlighting
 Plug 'sheerun/vim-polyglot'
 " Fuzzy finding
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Inline Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
@@ -155,9 +155,24 @@ command! -nargs=0 PreviewTypeDefinition :call CocActionAsync('jumpTypeDefinition
 " ----- jistr/vim-nerdtree-tabs -----
 
 " Open/close NERDTree Tabs with t
-nmap <silent> T :NERDTreeTabsToggle<CR>
-nmap <silent> t :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+nmap <silent> t :NERDTreeFocusToggle<CR>
+nmap <silent> T :NERDTreeTabsClose<CR>
+let NERDTreeMapOpenInTab='na'
+let NERDTreeMapOpenInTabSilent='na'
+let NERDTreeMapJumpLastChild='na'
+let NERDTreeMapJumpFirstChild='na'
+let NERDTreeCustomOpenArgs={'file':{'where': 't'}}
 let NERDTreeShowHidden=1
 
 " Clear gutter bg color
 hi clear SignColumn
+
+" ----- Fzf -----
+nnoremap <silent> <C-p> :Files <Enter>
+let g:fzf_action = {'enter': 'tab split' }
+"command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+"command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview(), <bang>0)
+"command! -bang -nargs=? Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -g "!README.md" -g "!package.json" -g "!package-lock.json" -- '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+nnoremap <silent> <C-f> :Rg<Enter>

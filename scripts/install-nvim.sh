@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo snap install ripgrep --classic
+
 wget --quiet https://github.com/neovim/neovim/releases/download/stable/nvim.appimage --output-document vim
 
 chmod +x vim
